@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>待办提醒</title>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <form class="navbar-form navbar-right" role="search">
+                    <button type="button" id="btnLogin" class="btn btn-primary" aria-label="Left Aligh">
+                        <span class="glyphicon glyphicon-send"></span>&nbsp;登录</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        待办提醒
+                        <button id="reloadTodo" class="close"><span class="glyphicon glyphicon-repeat pull-right"></span></button>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class='list-group-item disabled'>没有待办</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        交警点位公告
+                        <span data-toggle="collapse" href="#annoBody" aria-expanded="false" aria-controls="annoBody" class="caret"></span>
+                        <button id="reloadAnno" class="close"><span class="glyphicon glyphicon-repeat pull-right"></span></button>
+                    </div>
+                    <div id="annoBody" class="panel-body collapse">
+                        <small>
+                            <small>
+                                <p id="announcement">
+                                    <span>没有公告</span>
+                                </p>
+                            </small>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">日志
+                        <button id="btnClearLog" type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="panel-body">
+                        <dl id="log" class="dl-horizontal">
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

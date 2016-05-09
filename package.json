@@ -1,0 +1,12 @@
+{
+    "name": "提醒",
+    "main": "index.htm",
+    "window": {
+        "id": "index",
+        "toolbar": "false",
+        "width": 800,
+        "height": 600
+    },
+    "version": "1.0",
+    "show_in_taskbar": false
+}
