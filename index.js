@@ -248,7 +248,7 @@ function TodoWatch(w, itv) {
                         var msg = tmp.slice(tmp.indexOf("】") + 1);
                         var n = notify.show(title, msg);
                         n.onclick = function () {
-                            n.cancel();
+                            n.close();
                         };
                         found = true;
                     }
@@ -348,8 +348,9 @@ function AnnouncementWatch(keyWord, interval) {
     var show = function (word, href) {
         var n = notify.show("检测到关键字：" + word, url);
         n.onclick = function () {
-            window.open(url);
+            nw.Shell.openExternal(url);
             setIsRead(href);
+            n.close();
         };
     };
 
