@@ -235,6 +235,7 @@ function TodoWatch(w, itv) {
         $(".list-group").empty();
         if (arr.length === 0) {
             $(".list-group").html("<li class='list-group-item disabled'>没有待办</li>");
+            logger.log("查询待办完成。");
         }
         else {
             var found = false;
