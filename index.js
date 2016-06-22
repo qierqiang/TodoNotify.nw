@@ -160,9 +160,7 @@ function lsHelper() {
             //带序号也回调
             else if (k.indexOf("_") >= 0) {
                 if (k.substr(0, k.indexOf("_")) == name) {
-                    if (!callback(k)) {
-                        break;
-                    }
+                    callback(k);
                 }
             }
         }
