@@ -13,16 +13,21 @@ nw.Window.get().on('close', function (arg) {
         nw.Window.get().hide();
     }
 });
-nw.Window.open("http://172.18.18.18/hftpframe/CustomFrame4Bid/login_TP.aspx", { id: "login" });
+// nw.Window.open("http://172.18.18.18/hftpframe/CustomFrame4Bid/login_TP.aspx", { id: "login" });
+nw.Window.open("http://172.18.18.18/hftpframe_zx/CustomFrame4Bid/login_TP.aspx", { id: "login" });
 
 // 【托盘】 图标、菜单
 function initTray() {
     var tray = new gui.Tray({ "icon": "trayIcon_80.png", "tooltip": "提醒" });
 
     //退出菜单
-    var menuShow = new nw.MenuItem({
-        label: "显示",
+    var menuTodo = new nw.MenuItem({
+        label: "待办与交警通告",
         click: function () { nw.Window.open("index.htm", { "id": "index" }); }
+    });
+    var menuFlower = new nw.MenuItem({
+        label: "浇花计划",
+        click: function () { nw.Window.open("flowers.htm", { "id": "flowers" }); }
     });
     var menuQuit = new nw.MenuItem({
         label: "退出",
@@ -30,7 +35,8 @@ function initTray() {
     });
 
     var menu = new gui.Menu();
-    menu.append(menuShow);
+    menu.append(menuTodo);
+    menu.append(menuFlower);
     menu.append(new nw.MenuItem({ type: "separator", }));
     menu.append(menuQuit);
     tray.menu = menu;
@@ -48,7 +54,7 @@ function Index() {
         todos.start();
         announce.start();
         $("#btnLogin").click(function () {
-            nw.Window.open("http://172.18.18.18/hftpframe/CustomFrame4Bid/login_TP.aspx", { id: "login" });
+            nw.Window.open("http://172.18.18.18/hftpframe_zx/CustomFrame4Bid/login_TP.aspx", { id: "login" });
         });
         $("#reloadTodo").click(function () {
             todos.query();
@@ -212,7 +218,8 @@ function TodoWatch(w, itv) {
     //查询
     this.query = function () {
         var _data = "{\"BaseOUGuid\": \"-1\",\"UserGuid\": \"8623cf12-b066-4dab-9d33-0a89e331a1d0\"}";
-        var _url = "http://172.18.18.18/hftpframe/ZHManageMis_HFZTB/MainPages/TP_Main_OA/TP_Main_OA.aspx/GetMissionContent";
+        //http://172.18.18.18/hftpframe_zx/EpointMetroNic/FrameAll_Metronic.aspx/GetMissionContent
+        var _url = "http://172.18.18.18/hftpframe_zx/EpointMetroNic/FrameAll_Metronic.aspx/GetWaithandleMessage";
         $.ajax({
             type: "post", data: _data, contentType: "application/json;utf-8", url: _url, success: read, error: function (e) {
                 logger.log("【失败】查询待办失败！是否还没有登录？", "error");
@@ -222,9 +229,15 @@ function TodoWatch(w, itv) {
 
     //读取内容
     var read = function (data) {
+/*ret = 
+<li><p>您有（<span class="number">1</span>）个待办事宜</p></li>
+<li><UL class="dropdown-menu-list scroller" style="height: 250px;">
+    <li><a href="javascript:OpenWindow_Msg('/HFTPFrame_ZX/JSGCZtbMis2/Pages/Workflow/Handle_Main.aspx?ProcessVersionInstanceGuid=fbac793d-21e2-460e-b7cf-03bcb839db2e&WorkItemGuid=9b775abc-f7f8-4cf8-8256-49b37dd92f80&MessageItemGuid=1e08853e-df03-4620-b534-f142a60fedbe');" title="【信息部审核】业务三部系统反馈:" style="width:90%;display: inline-block;">【信息部审核...<span class="time">09-12 11:58</span></a><div class="NoNeedRemind" title="不再提醒" ItmeGuid="1e08853e-df03-4620-b534-f142a60fedbe"></div></li></UL></li>★1
+*/
+//<a title="【信息部审核】业务三部系统反馈:">【信息部审核...<span class="time">09-12 11:58</span></a>
         var ret = data.d;
         var arr = new Array();
-        $(ret).find("li").each(function (i) { arr[i] = $(this).find("div").eq(1).text(); });
+        $(ret).find("a").each(function (i) { arr[i] = $(this).attr("title") });
         show(arr);
     };
 
