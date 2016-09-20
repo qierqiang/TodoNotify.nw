@@ -1,61 +1,70 @@
-td {
-  border: 1px solid #F0F0F0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.flower {
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
-  height: 70px;
-  width: 70px;
-  margin: 15px auto;
+hr {
+  margin: 2px 0;
+}
+#mainContainer {
+  height: 745px;
+  width: 895px;
+  margin: 0 auto;
+}
+#canvas {
+  position: relative;
+  height: 745px;
+  width: 595px;
+  background-image: url(layout.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  float: left;
+}
+#today {
+  height: 745px;
+  width: 300px;
+  float: left;
+}
+#today h3 {
+  cursor: pointer;
+}
+#today small {
+  float: right;
+}
+.sm-flower {
+  position: absolute;
+  border: 1px solid green;
+  border-radius: 13.5px;
+  width: 27px;
+  height: 27px;
   overflow: hidden;
+  background-image: url(potting.png);
+  background-position: center;
+  background-size: 27px;
+  cursor: pointer;
 }
-.flower .content {
-  position: relative;
-  width: 70px;
-  height: 70px;
-  top: -70px;
-  text-align: center;
-}
-.flower .content .link {
-  display: inline-block;
-  white-space: nowrap;
-  position: relative;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  width: 70px;
-  height: 70px;
-  vertical-align: middle;
-  color: white;
-}
-.flower .content .link:hover {
-  color: white;
-  text-decoration: none;
+.lg-flower {
+  position: absolute;
+  border: 1px solid green;
+  border-radius: 27.5px;
+  width: 55px;
+  height: 55px;
+  overflow: hidden;
+  background-image: url(potting.png);
+  background-position: center;
+  background-size: 55px;
+  cursor: pointer;
 }
 .wet {
   background-color: #428bca;
+  width: 100%;
+  height: 10%;
+  opacity: .4;
 }
 .dry {
   background-color: #f0ad4e;
-}
-#detail {
-  height: 619px;
-  border: 1px solid #F0F0F0;
-  overflow: scroll;
-}
-#detail .humidity {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  height: 40px;
-  overflow: hidden;
-  float: right;
-  margin-top: 12px;
-}
-#detail .humidity .content {
-  position: relative;
-  text-align: center;
-  width: 100px;
-  top: -30px;
-  color: white;
+  width: 100%;
+  height: 90%;
+  opacity: .4;
 }
 @keyframes shake {
   0% {

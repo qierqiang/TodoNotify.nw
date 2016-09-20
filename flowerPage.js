@@ -1,64 +1,60 @@
 "use strict"
 
 var flowers = [
-    new Flower("君子兰", 30, 0, 1, "f1", "浇水后必须放置于通风处", 3),
-    new Flower("虎皮兰", 30, 0, 2, "f2", "一个月左右向土喷水", 3),
-    new Flower("君子兰", 30, 0, 3, "f3", "浇水后必须放置于通风处", 3),
-    new Flower("莲花竹", 4, 0, 4, "f4", "", 1),
-    new Flower("虎皮兰", 30, 2, 1, "f5", "一个月左右向土喷水", 3),
-    new Flower("虎皮兰", 30, 2, 2, "f6", "一个月左右向土喷水", 3),
-    new Flower("发财树", 25, 2, 3, "f7", "浇水后必须放置于通风处", 5),
-    new Flower("袖珍椰子", 4, 2, 4, "f8", "", 1),
-    new Flower("常青藤", 4, 3, 4, "f9", "", 1),
-    new Flower("金钱树", 30, 4, 1, "f10", "浇水后必须放置于通风处", 3),
-    new Flower("竹竽", 4, 4, 2, "f11", "", 1),
-    new Flower("竹柏", 4, 4, 3, "f12", "", 1),
-    new Flower("兰花", 4, 4, 4, "f13", "", 1),
-    new Flower("富贵树", 7, 1, 5, "f14", "", 2),
-    new Flower("竹柏", 4, 2, 0, "f15", "", 1),
-    new Flower("香龙血树", 7, 4, 0, "f16", "", 2),
-    new Flower("香龙血树", 7, 1, 0, "f17", "", 2),
-    new Flower("未名", 7, 5, 5, "f18", "", 2),
-    new Flower("香龙血树", 7, 5, 3, "f19", "", 2),
-    new Flower("测试", 2, 5, 0, "f20", "", 1)
+    new Flower("君子兰", 30, 20, 270, "f1", "浇水后必须放置于通风处", 3, false),
+    new Flower("虎皮兰", 30, 20, 398, "f2", "一个月左右向土喷水", 3, false),
+    new Flower("君子兰", 30, 20, 526, "f3", "浇水后必须放置于通风处", 3, false),
+    new Flower("莲花竹", 4, 20, 654, "f4", "", 1, false),
+    new Flower("虎皮兰", 30, 330, 286, "f5", "一个月左右向土喷水", 3, false),
+    new Flower("虎皮兰", 30, 330, 414, "f6", "一个月左右向土喷水", 3, false),
+    new Flower("发财树", 25, 330, 542, "f7", "浇水后必须放置于通风处", 5, false),
+    new Flower("袖珍椰子", 4, 330 - 20, 670, "f8", "", 1, false),
+    new Flower("常青藤", 4, 330 + 15, 670, "f9", "", 1, false),
+    new Flower("金钱树", 30, 365, 286, "f10", "浇水后必须放置于通风处", 3, false),
+    new Flower("竹竽", 4, 365, 414, "f11", "", 1, false),
+    new Flower("竹柏", 4, 365, 542, "f12", "", 1, false),
+    new Flower("兰花", 4, 365 + 15, 670, "f13", "", 1, false),
+    new Flower("富贵树", 7, 160, 675, "f14", "", 2, true),
+    new Flower("竹柏", 4, 347, 151, "f15", "", 1, false),
+    new Flower("香龙血树", 7, 438, 132, "f16", "", 2, true),
+    new Flower("香龙血树", 7, 228, 132, "f17", "", 2, true),
+    new Flower("未名", 7, 525, 633, "f18", "", 2, false),
+    new Flower("香龙血树", 7, 518, 414, "f19", "", 2, true),
+    new Flower("测试", 2, 330, 190, "f20", "虚构出来用于测试的花", 1, false)
 ];
 
-drawGrid();
 dispFlowers();
 dispToday();
-bindEvents();
+// bindEvents();
 dispHumidity();
-
-//画网格
-function drawGrid() {
-    var gridRowCount = 6;
-    var gridColCount = 6;
-    var grid = document.getElementById("grid");
-    grid.innerHTML = "";
-
-    for (var i = 0; i < gridRowCount; i++) {
-        var tmp = "<tr id='r" + i + "'>";
-        for (var j = 0; j < gridColCount; j++) {
-            tmp += "<td id='" + "r" + i + "c" + j + "'></td>";
-        }
-        tmp += "</tr>";
-        grid.innerHTML = grid.innerHTML + tmp;
-    }
-}
 
 //显示花信息
 function dispFlowers() {
+    var canvas = $("#canvas");
+    canvas.html("");
     for (var index = 0; index < flowers.length; index++) {
         var f = flowers[index];
-        var pos = `r${f.y}c${f.x}`;
-        var td = document.getElementById(pos);
-        td.innerHTML = `
-        <div class="flower">
-            <div class="dry" style="height: ${f.dry}%"></div>
-            <div class="wet" style="height: ${f.wet}%"></div>
-            <div class="content"><a id="${f.id}" class="link" href="javascript:void(0);" onclick="setWateredDate('${f.id}')">${f.name}</a></div>
-        </div>`;
+        f.getWateredDate();
+        canvas.append(
+            `<div id="${f.id}" class="flower ${f.isLarge ? "lg-flower" : "sm-flower"}" style="left:${f.x}px;top:${f.y}px;">
+                <div class="dry" style="height: ${f.dry}%; /*opacity: ${f.dry / 100}*/"></div>
+                <div class="wet" style="height: ${f.wet}%"></div>
+            </div>`);
     }
+    //悬停提示
+    $(document).tooltip({
+        items: ".flower",
+        content: function () {
+            var f = getFlowerById(this.id);
+            if (f) {
+                return `<p>${f.name}\t-\t${f.id}</p><p>每 ${f.period}±${f.offSet} 天浇一次水，${f.wateredDaysToNow} 天前浇过。</p><p>${f.note}</p>`;
+            }
+        }
+    });
+    //点击浇花
+    $(".flower").click(function () {
+        setWateredDate(this.id);
+    });
 }
 
 //注册事件
@@ -77,17 +73,6 @@ function bindEvents() {
             document.getElementById(this.id).parentElement.parentElement.children[1].style.animation = "none";
         }
     }
-
-    //花图标鼠标悬停展示信息
-    $(document).tooltip({
-        items: ".link",
-        content: function () {
-            var f = getFlowerById(this.id);
-            if (f) {
-                return `<p>${f.name}\t-\t${f.id}</p><p>每 ${f.period}±${f.offSet} 天浇一次水，${f.wateredDaysToNow} 天前浇过。</p><p>${f.note}</p>`;
-            }
-        }
-    });
 
     //今日浇水鼠标悬停时花图标闪烁
     var items = document.getElementsByClassName("list-group-item");
@@ -119,35 +104,50 @@ function getFlowerById(id) {
 
 //记录浇水
 function setWateredDate(id) {
-    if (confirm("浇过了吗？")) {
-        var f = getFlowerById(id);
-        if (f) {
+    var f = getFlowerById(id);
+    if (f) {
+        confirmDialog("浇过了吗？", function () {
             f.setWateredDate();
-            alert("已记录");
-            drawGrid();
             dispFlowers();
             dispToday();
-            bindEvents();
-        }
+        });
     }
+}
+
+function confirmDialog(msg, callback) {
+    var div = $("#confirm");
+    if (div.length == 0) {
+        $("body").append("<div id='confirm' title='确认'><p></p></div>")
+        div = $("#confirm");
+    }
+    div.find("p").html(msg);
+    div.dialog({
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+            "是": function () {
+                $(this).dialog("close");
+                callback();
+            },
+            "取消": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
 }
 
 //显示天气湿度
 function dispHumidity() {
     var humidity = getHumidity();
     if (humidity > -1) {
-        var dry = 100 - humidity;
-        $(".humidity>.dry").css("height", dry + "%");
-        $(".humidity>.wet").css("height", humidity + "%");
-        $(".humidity>.content").html(`湿度：${humidity}%`)
+        $("#humidity").text(humidity + "%");
     }
 }
 
 //显示今天要浇水
 function dispToday() {
-
-    //查询下两次浇水的时间
-
     var list = [];
     var nextWaterDay = nextWorkDay(); //距离下次有人在这浇水的天数
     for (var i = 0; i < flowers.length; i++) {
@@ -156,18 +156,49 @@ function dispToday() {
             list.push(f);
         }
     }
-    var page = document.getElementById("today");
-    page.innerHTML = "";
+    $("#today>h3").unbind();
+    $("#today>h3").mouseover(function () {
+        for (var i = 0; i < list.length; i++) {
+            var f = list[i];
+            pulseFlower(f.id);
+        }
+    });
+    $("#today>h3").mouseleave(function () {
+        for (var i = 0; i < list.length; i++) {
+            var f = list[i];
+            stopPulseFlower(f.id);
+        }
+    });
+    $("#today>div").remove();
+    $("#today").append("<div></div>");
+    var page = $("#today>div");
+    page.html("");
     for (var i = 0; i < list.length; i++) {
         var f = list[i];
-        page.innerHTML = page.innerHTML + `
-        <a id="a-${f.id}" href="javascript:void(0);" class="list-group-item">
-            <h4 class="list-group-item-heading">${f.name} (${f.id})</h4>
-            <p class="list-group-item-text">每 ${f.period}±${f.offSet} 天浇一次水，${f.wateredDaysToNow} 天前浇过。</p>
-            <p class="list-group-item-text">${f.note}</p>
-        </a>
-        `;
+        page.append(
+            `<h3 data-fid="${f.id}">${f.name}\t-\t${f.id}</h3>
+            <div>
+                <p>每 ${f.period}±${f.offSet} 天浇一次水，${f.wateredDaysToNow} 天前浇过。<br>${f.note}</p>
+                <a href="javascript:void(0)" class="btn" onclick=setWateredDate('${f.id}')>已浇水</a>
+            </div>`);
     }
+    $(".btn").button();
+    page.accordion({ heightStyle: "content", collapsible: true });
+    $("[data-fid]").mouseover(function () {
+        var fid = $(this).attr("data-fid");
+        pulseFlower(fid);
+    });
+    $("[data-fid]").mouseleave(function () {
+        var fid = $(this).attr("data-fid");
+        stopPulseFlower(fid);
+    });
+}
+
+function pulseFlower(fid) {
+    $(`#${fid}>div`).css({ animation: "pulse 2s infinite linear" })
+}
+function stopPulseFlower(fid) {
+    $(`#${fid}>div`).css({ animation: "none" });
 }
 
 //获取下一个工作日距离今天有几天 // 大于8天则会返回9天
