@@ -1,0 +1,99 @@
+td {
+    border: 1px solid #F0F0F0
+}
+
+.flower {
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    height: 70px;
+    width: 70px;
+    margin: 15px auto;
+    overflow: hidden;
+    .content {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        top: -70px;
+        text-align: center;
+        .link {
+            display: inline-block;
+            white-space: nowrap;
+            position: relative;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            width: 70px;
+            height: 70px;
+            vertical-align: middle;
+            color: white;
+            &:hover {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.wet {
+    background-color: rgb(66, 139, 202);
+}
+
+.dry {
+    background-color: rgb(240, 173, 78);
+}
+
+#detail {
+    height: 619px;
+    border: 1px solid #F0F0F0;
+    overflow: scroll;
+    .humidity {
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        height: 40px;
+        overflow: hidden;
+        float: right;
+        margin-top: 12px;
+        .content {
+            position: relative;
+            text-align: center;
+            width: 100px;
+            top: -30px;
+            color: white;
+        }
+    }
+}
+
+// ****** 动画 *****
+//摇摆
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(20deg);
+    }
+    75% {
+        transform: rotate(-20deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+//闪烁
+@keyframes pulse {
+    0% {
+        background: rgb(240, 173, 78);
+    }
+    12% {
+        background: #990033;
+    }
+    24% {
+        background: rgb(240, 173, 78);
+    }
+    36% {
+        background: #990033;
+    }
+    48% {
+        background: rgb(240, 173, 78);
+    }
+}

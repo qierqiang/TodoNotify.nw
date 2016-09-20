@@ -3,30 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/v3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.9.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="flowerPage.css">
     <title>养花计划</title>
 </head>
 
 <body>
-    <div>
-        <div id="detail">
-            <div id="hoverInfo"></div>
-            <hr>
-            <div class="humidity">
-                <div class="dry" style="height: 100%"></div>
-                <div class="wet" style="height: 0%"></div>
-                <div class="content">湿度：#错误#</div>
+    <div class="container">
+        <div class="row">
+            <div id="detail" class="col-md-4">
+                <div class="humidity">
+                    <div class="dry" style="height: 100%"></div>
+                    <div class="wet" style="height: 0%"></div>
+                    <div class="content">湿度：#错误#</div>
+                </div>
+                <h3>今天要浇水：</h3>
+                <hr>
+                <div class="today-container">
+                    <div id="today" class="list-group"></div>
+                </div>
             </div>
-            <h3>今天要浇水：</h3>
-            <div id="today" class="list-group">
-            </div>
+
+            <table id="grid" class="col-md-8"></table>
         </div>
-        <table id="grid">
-        </table>
     </div>
 
-    <script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery-ui/1.9.2/jquery-ui.min.js"></script>
     <script src="flower.js"></script>
     <script src="flowerPage.js"></script>
 </body>

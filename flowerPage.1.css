@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+hr {
+  margin: 2px 0;
+}
+#mainContainer {
+  height: 745px;
+  width: 895px;
+  margin: 0 auto;
+}
+#canvas {
+  position: relative;
+  height: 745px;
+  width: 595px;
+  background-image: url(layout.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  float: left;
+}
+#today {
+  height: 745px;
+  width: 300px;
+  float: left;
+}
+#today h3 {
+  cursor: pointer;
+}
+#today small {
+  float: right;
+}
+.sm-flower {
+  position: absolute;
+  border: 1px solid green;
+  border-radius: 13.5px;
+  width: 27px;
+  height: 27px;
+  overflow: hidden;
+  background-image: url(potting.png);
+  background-position: center;
+  background-size: 27px;
+  cursor: pointer;
+}
+.lg-flower {
+  position: absolute;
+  border: 1px solid green;
+  border-radius: 27.5px;
+  width: 55px;
+  height: 55px;
+  overflow: hidden;
+  background-image: url(potting.png);
+  background-position: center;
+  background-size: 55px;
+  cursor: pointer;
+}
+.wet {
+  background-color: #428bca;
+  width: 100%;
+  height: 10%;
+  opacity: .4;
+}
+.dry {
+  background-color: #f0ad4e;
+  width: 100%;
+  height: 90%;
+  opacity: .4;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes pulse {
+  0% {
+    background: #f0ad4e;
+  }
+  12% {
+    background: #990033;
+  }
+  24% {
+    background: #f0ad4e;
+  }
+  36% {
+    background: #990033;
+  }
+  48% {
+    background: #f0ad4e;
+  }
+}

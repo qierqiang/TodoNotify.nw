@@ -1,132 +1,90 @@
-body {
-    text-align: center;
-}
-
-body>div {
-    width: 943px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-}
-
-#grid {
-    float: right;
-}
-
 td {
-    width: 102px;
-    height: 102px;
-    border: 1px solid #F0F0F0
+  border: 1px solid #F0F0F0;
 }
-
-.progress {
-    height: 3px;
-    margin-bottom: 0;
-}
-
 .flower {
-    /*border: 1px solid #A0F0A0;*/
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    height: 70px;
-    width: 70px;
-    margin: 15px;
-    overflow: hidden;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  height: 70px;
+  width: 70px;
+  margin: 15px auto;
+  overflow: hidden;
 }
-
-#hoverInfo {
-    height: 100px;
+.flower .content {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  top: -70px;
+  text-align: center;
 }
-
-.humidity {
-    /*border: 1px solid black;*/
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    height: 40px;
-    overflow: hidden;
-    float: right;
+.flower .content .link {
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 70px;
+  height: 70px;
+  vertical-align: middle;
+  color: white;
 }
-
-.humidity>.content {
-    width: 100px;
-    top: -30px;
-    color: white;
+.flower .content .link:hover {
+  color: white;
+  text-decoration: none;
 }
-
 .wet {
-    background-color: rgb(66, 139, 202);
+  background-color: #428bca;
 }
-
 .dry {
-    background-color: rgb(240, 173, 78);
+  background-color: #f0ad4e;
 }
-
-.content {
-    position: relative;
-    width: 70px;
-    height: 70px;
-    top: -70px;
-    text-align: center;
-}
-
-.link {
-    display: inline-block;
-    white-space: nowrap;
-    position: relative;
-    /*top: 40%;*/
-    padding-top: 25px;
-    padding-bottom: 25px;
-    width: 70px;
-    height: 70px;
-    vertical-align: middle;
-    color: white;
-}
-
-.link:hover {
-    color: white;
-    text-decoration: none;
-}
-
 #detail {
-    float: right;
-    clear: none;
-    margin-left: 10px;
-    width: 300px;
-    height: 613px;
-    text-align: left;
-    padding: 5px 10px;
-    border: 1px solid #F0F0F0;
+  height: 619px;
+  border: 1px solid #F0F0F0;
+  overflow: scroll;
 }
-
+#detail .humidity {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  height: 40px;
+  overflow: hidden;
+  float: right;
+  margin-top: 12px;
+}
+#detail .humidity .content {
+  position: relative;
+  text-align: center;
+  width: 100px;
+  top: -30px;
+  color: white;
+}
 @keyframes shake {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(20deg);
-    }
-    75% {
-        transform: rotate(-20deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
-
 @keyframes pulse {
-    0% {
-        background: rgb(240, 173, 78);
-    }
-    12% {
-        background: #990033;
-    }
-    24% {
-        background: rgb(240, 173, 78);
-    }
-    36% {
-        background: #990033;
-    }
-    48% {
-        background: rgb(240, 173, 78);
-    }
+  0% {
+    background: #f0ad4e;
+  }
+  12% {
+    background: #990033;
+  }
+  24% {
+    background: #f0ad4e;
+  }
+  36% {
+    background: #990033;
+  }
+  48% {
+    background: #f0ad4e;
+  }
 }
