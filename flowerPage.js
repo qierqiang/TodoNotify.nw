@@ -16,8 +16,8 @@ var flowers = [
     new Flower("兰花", 4, 365 + 15, 670, "f13", "", 1, false),
     new Flower("富贵树", 7, 160, 675, "f14", "", 2, true),
     new Flower("竹柏", 4, 347, 151, "f15", "", 1, false),
-    new Flower("香龙血树", 7, 438, 132, "f16", "", 2, true),
-    new Flower("香龙血树", 7, 228, 132, "f17", "", 2, true),
+    new Flower("螺纹铁", 15, 438, 132, "f16", "", 2, true),
+    new Flower("螺纹铁", 15, 228, 132, "f17", "", 2, true),
     new Flower("未名", 7, 525, 633, "f18", "", 2, false),
     new Flower("香龙血树", 7, 518, 414, "f19", "", 2, true),
     new Flower("测试", 2, 330, 190, "f20", "虚构出来用于测试的花", 1, false)
