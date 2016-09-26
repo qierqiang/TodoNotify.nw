@@ -9,6 +9,7 @@ hr {
   height: 745px;
   width: 895px;
   margin: 0 auto;
+  padding-top: 5px;
 }
 #canvas {
   position: relative;

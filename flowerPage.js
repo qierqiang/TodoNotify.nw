@@ -25,7 +25,6 @@ var flowers = [
 
 dispFlowers();
 dispToday();
-// bindEvents();
 dispHumidity();
 
 //显示花信息
